@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord import app_commands
 import random
 import praw
+import json
 REDDIT_APP_ID="1xp4A0myryk44eT2EbmbTw"
 REDDIT_APP_SECRET="bQEWGJ7_QOTE5eMZ48sQjKSwXaKQoA"
 
@@ -190,4 +191,10 @@ async def banner(ctx, *,member: discord.Member=None):
     embed.set_image(url=fetched.banner)
     await ctx.send(embed=embed)
 
-bot.run('MTA3MTIwNjU3MTYxMjMxMTcwMw.GqAPWC.ZtzELD8kNkuk-smLZPoRe0SOK0S-yRK64uDQxg')
+
+with open("key.json","r") as file:
+    jsonData = json.load(file)
+key = jsonData["key"]
+print(key)
+
+bot.run(key)
