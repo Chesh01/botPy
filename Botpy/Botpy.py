@@ -13,17 +13,21 @@ class RedditImages(commands.Cog):
         self.bot = bot
 
     
-
-        REDDIT_APP_ID="1xp4A0myryk44eT2EbmbTw"
-        REDDIT_APP_SECRET="bQEWGJ7_QOTE5eMZ48sQjKSwXaKQoA"
+        with open("key.json","r") as file:
+            jsonData = json.load(file)
+        key = jsonData["key"]
+        REDDIT_APP_ID=jsonData["REDDIT_APP_ID"]
+        REDDIT_APP_SECRET=jsonData["REDDIT_APP_SECRET"]
+        REDDIT_USER=jsonData["username"]
+        REDDIT_PASSWORD=jsonData["password"]
 
         # Praw init
         self.reddit = praw.Reddit(
             client_id= REDDIT_APP_ID,
             client_secret= REDDIT_APP_SECRET,
-            password="Cheshire@1975",
+            password=REDDIT_PASSWORD,
             user_agent="Cheese.pyDiscord:%s:1.0" % REDDIT_APP_ID,
-            username="HmChesh",
+            username=REDDIT_USER,
         )
 
 
