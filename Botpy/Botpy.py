@@ -180,8 +180,10 @@ class Util(commands.Cog):
 
     # Tells Join Date of User
     @commands.hybrid_command()
-    async def joined(self, ctx, *, member: discord.Member):
-        await ctx.send(f'{member} joined on {member.joined_at}')
+    async def joined(self, ctx, *, member: discord.Member=None):
+        target = ctx.author or member
+        fetched = await bot.fetch_user(target.id)
+        await ctx.send(discord.utils.format_dt(target.joined_at, 'R'))
 
 intents = discord.Intents.default()
 intents.message_content = True
